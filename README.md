@@ -66,9 +66,8 @@ testCompile 'org.hamcrest:hamcrest-junit:2.0.0.0'
 
 // Espresso
 androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
-androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.2'
 
 // RESTMock
-androidTestCompile 'com.github.andrzejchm.RESTMock:android:0.1.4'
+androidTestCompile 'com.github.andrzejchm.RESTMock:android:0.2.0'
 ```
 

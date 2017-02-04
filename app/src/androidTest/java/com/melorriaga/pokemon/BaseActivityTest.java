@@ -17,7 +17,7 @@ public abstract class BaseActivityTest {
 
     @After
     public void tearDown() throws Exception {
-        Thread.sleep(3000);
+        Thread.sleep(1000);
     }
 
 }

@@ -11,7 +11,10 @@ import com.melorriaga.pokemon.view.impl.MainActivity;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.util.concurrent.TimeUnit;
+
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.Visibility.VISIBLE;
 import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
@@ -36,15 +39,14 @@ public class MainActivityTest extends BaseActivityTest {
     @Test
     public void testShowPokemonNames_success() {
         whenGET(pathEndsWith("pokemon?limit=150"))
+                .delay(TimeUnit.SECONDS, 1)
                 .thenReturnFile(200, "getPokemonNames_200.json");
 
         Intent intent = new Intent();
         mainActivityTestRule.launchActivity(intent);
 
-        onView(withId(R.id.recycler_view))
-                .check(new RecyclerViewItemCountAssertion(150));
-        onView(withText(R.string.done))
-                .check(matches(withEffectiveVisibility(VISIBLE)));
+        onView(withId(R.id.recycler_view)).check(new RecyclerViewItemCountAssertion(150));
+        onView(withText(R.string.done)).check(matches(withEffectiveVisibility(VISIBLE)));
 
         verifyGET(pathEndsWith("pokemon?limit=150")).invoked();
     }
@@ -52,17 +54,36 @@ public class MainActivityTest extends BaseActivityTest {
     @Test
     public void testShowPokemonNames_error() {
         whenGET(pathEndsWith("pokemon?limit=150"))
+                .delay(TimeUnit.SECONDS, 1)
                 .thenReturnEmpty(404);
 
         Intent intent = new Intent();
         mainActivityTestRule.launchActivity(intent);
 
-        onView(withId(R.id.recycler_view))
-                .check(new RecyclerViewItemCountAssertion(0));
-        onView(withText(R.string.error))
-                .check(matches(withEffectiveVisibility(VISIBLE)));
+        onView(withId(R.id.recycler_view)).check(new RecyclerViewItemCountAssertion(0));
+        onView(withText(R.string.error)).check(matches(withEffectiveVisibility(VISIBLE)));
 
         verifyGET(pathEndsWith("pokemon?limit=150")).invoked();
+    }
+
+    @Test
+    public void testShowPokemonNames_error_retry() {
+        whenGET(pathEndsWith("pokemon?limit=150"))
+                .delay(TimeUnit.SECONDS, 1)
+                .thenReturnEmpty(404)
+                .delay(TimeUnit.SECONDS, 1)
+                .thenReturnFile(200, "getPokemonNames_200.json");
+
+        Intent intent = new Intent();
+        mainActivityTestRule.launchActivity(intent);
+
+        onView(withId(R.id.recycler_view)).check(new RecyclerViewItemCountAssertion(0));
+        onView(withText(R.string.error)).check(matches(withEffectiveVisibility(VISIBLE)));
+        onView(withText(R.string.retry)).perform(click());
+        onView(withId(R.id.recycler_view)).check(new RecyclerViewItemCountAssertion(150));
+        onView(withText(R.string.done)).check(matches(withEffectiveVisibility(VISIBLE)));
+
+        verifyGET(pathEndsWith("pokemon?limit=150")).exactly(2);
     }
 
 }

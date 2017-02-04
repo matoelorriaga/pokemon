@@ -6,13 +6,11 @@ import com.melorriaga.pokemon.view.MainView;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.internal.util.reflection.Whitebox;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,8 +26,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by melorriaga on 2/2/17.
  */
-@RunWith(MockitoJUnitRunner.class)
-public class MainPresenterTest {
+public class MainPresenterTest extends BasePresenterTest {
 
     @Mock
     MainView view;

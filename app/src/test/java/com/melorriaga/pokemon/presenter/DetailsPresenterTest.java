@@ -8,13 +8,11 @@ import com.melorriaga.pokemon.view.DetailsView;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.internal.util.reflection.Whitebox;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -29,8 +27,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by melorriaga on 3/2/17.
  */
-@RunWith(MockitoJUnitRunner.class)
-public class DetailsPresenterTest {
+public class DetailsPresenterTest extends BasePresenterTest {
 
     @Mock
     DetailsView view;

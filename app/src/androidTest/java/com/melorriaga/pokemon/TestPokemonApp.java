@@ -1,6 +1,5 @@
 package com.melorriaga.pokemon;
 
-import android.app.Application;
 import android.support.annotation.NonNull;
 
 import com.melorriaga.pokemon.injection.component.AppComponent;
@@ -8,23 +7,20 @@ import com.melorriaga.pokemon.injection.component.DaggerAppComponent;
 import com.melorriaga.pokemon.injection.module.AppModule;
 import com.melorriaga.pokemon.injection.module.NetworkModule;
 
-public class PokemonApp extends Application {
+import io.appflate.restmock.RESTMockServer;
 
-    private AppComponent mAppComponent;
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        mAppComponent = DaggerAppComponent.builder()
-                .appModule(new AppModule(this))
-                .networkModule(new NetworkModule(BuildConfig.BASE_URL))
-                .build();
-    }
+/**
+ * Created by melorriaga on 4/2/17.
+ */
+public class TestPokemonApp extends PokemonApp {
 
     @NonNull
+    @Override
     public AppComponent getAppComponent() {
-        return mAppComponent;
+        return DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .networkModule(new NetworkModule(RESTMockServer.getUrl()))
+                .build();
     }
 
 }

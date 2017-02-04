@@ -11,7 +11,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 25
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'com.melorriaga.pokemon.TestRunner'
 
         buildConfigField 'String', 'BASE_URL', BASE_URL
     }
@@ -29,6 +29,7 @@ android {
             force 'com.android.support:recyclerview-v7:25.1.1'
             force 'com.android.support:support-v4:25.1.1'
             force 'com.android.support:support-annotations:25.1.1'
+            force 'com.squareup.okhttp3:okhttp:3.6.0'
         }
     }
 }
@@ -45,19 +46,19 @@ dependencies {
     compile 'com.android.support:support-annotations:25.1.1'
 
     // Dagger 2
-    compile 'com.google.dagger:dagger:2.8'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
+    compile 'com.google.dagger:dagger:2.9'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.9'
 
     // Butterknife
-    compile 'com.jakewharton:butterknife:8.4.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 
     // Gson
     compile 'com.google.code.gson:gson:2.8.0'
 
     // OkHttp
-    compile 'com.squareup.okhttp3:okhttp:3.4.2'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.4.2'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 
     // Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
@@ -70,7 +71,7 @@ dependencies {
     // Apache Commons Lang
     compile 'org.apache.commons:commons-lang3:3.5'
 
-    // RxJava/RxAndroid
+    // RxJava & RxAndroid
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'io.reactivex:rxandroid:1.2.1'
 
@@ -94,4 +95,7 @@ dependencies {
     // Espresso
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.2'
+
+    // RESTMock
+    androidTestCompile 'com.github.andrzejchm.RESTMock:android:0.1.4'
 }

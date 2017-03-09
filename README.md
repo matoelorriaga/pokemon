@@ -4,18 +4,23 @@ This project shows how to implement MVP in Android, based on the templates found
 
 Uses Loaders to keep the presenter alive during configuration changes.
 
+Both unit & UI tests uses Kotlin.
+
 [![android-mvp-pokemon](http://img.youtube.com/vi/UEGBQ6V8V5s/0.jpg)](http://www.youtube.com/watch?v=UEGBQ6V8V5s)
 
 ### Dependencies (build.gradle)
 
 ```groovy
 // Android Support Library
-compile 'com.android.support:appcompat-v7:25.1.1'
-compile 'com.android.support:design:25.1.1'
-compile 'com.android.support:cardview-v7:25.1.1'
-compile 'com.android.support:recyclerview-v7:25.1.1'
-compile 'com.android.support:support-v4:25.1.1'
-compile 'com.android.support:support-annotations:25.1.1'
+compile 'com.android.support:appcompat-v7:25.2.0'
+compile 'com.android.support:design:25.2.0'
+compile 'com.android.support:cardview-v7:25.2.0'
+compile 'com.android.support:recyclerview-v7:25.2.0'
+compile 'com.android.support:support-v4:25.2.0'
+compile 'com.android.support:support-annotations:25.2.0'
+
+// Kotlin Standard Library
+compile "org.jetbrains.kotlin:kotlin-stdlib:1.1.0"
 
 // Dagger 2
 compile 'com.google.dagger:dagger:2.9'
@@ -64,10 +69,13 @@ testCompile 'org.mockito:mockito-core:1.10.19'
 // Hamcrest
 testCompile 'org.hamcrest:hamcrest-junit:2.0.0.0'
 
+// Kotlin Test Support
+testCompile "org.jetbrains.kotlin:kotlin-test:1.1.0"
+testCompile "org.jetbrains.kotlin:kotlin-test-junit:1.1.0"
+
 // Espresso
 androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
 
 // RESTMock
 androidTestCompile 'com.github.andrzejchm.RESTMock:android:0.2.0'
 ```
-
